@@ -10,36 +10,44 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:Arial, sans-serif;
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#0d0d0d;
+    background:#0a0a0a;
     color:white;
-    line-height:1.6;
 }
 
+/* NAV */
 header{
     position:fixed;
     width:100%;
     top:0;
-    background:rgba(0,0,0,0.95);
-    border-bottom:2px solid #ff0000;
+    background:rgba(0,0,0,0.85);
+    border-bottom:1px solid #ff0000;
     z-index:1000;
+    backdrop-filter: blur(10px);
 }
 
 nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px 8%;
+    padding:15px 8%;
 }
 
 .logo{
-    color:#ff0000;
-    font-size:28px;
+    font-size:26px;
     font-weight:bold;
-    text-transform:uppercase;
+    color:#ff0000;
+    text-shadow:0 0 10px #ff0000;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 5px #ff0000; }
+    to{ text-shadow:0 0 20px #ff0000; }
 }
 
 nav ul{
@@ -48,12 +56,12 @@ nav ul{
 }
 
 nav ul li{
-    margin-left:25px;
+    margin-left:20px;
 }
 
 nav ul li a{
-    text-decoration:none;
     color:white;
+    text-decoration:none;
     transition:0.3s;
 }
 
@@ -61,96 +69,92 @@ nav ul li a:hover{
     color:#ff0000;
 }
 
+/* HERO */
 .hero{
     height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
     background:
-    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.8)),
+    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
     url("https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600");
     background-size:cover;
     background-position:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
 }
 
-.hero-content h1{
+.hero h1{
     font-size:4rem;
     color:#ff0000;
-    margin-bottom:15px;
 }
 
-.hero-content p{
-    max-width:700px;
-    margin:auto;
-    font-size:1.1rem;
+.hero p{
+    max-width:600px;
+    margin:15px auto;
+    opacity:0.8;
 }
 
 .btn{
     display:inline-block;
-    margin-top:25px;
+    margin-top:20px;
+    padding:12px 28px;
     background:#ff0000;
     color:white;
-    padding:14px 30px;
-    text-decoration:none;
     border-radius:5px;
-    transition:.3s;
+    text-decoration:none;
+    transition:0.3s;
 }
 
 .btn:hover{
-    background:#cc0000;
+    transform:scale(1.05);
 }
 
+/* SECTIONS */
 section{
     padding:90px 8%;
 }
 
-.section-title{
+.title{
     text-align:center;
+    font-size:2.2rem;
     color:#ff0000;
     margin-bottom:40px;
-    font-size:2.5rem;
 }
 
-.about{
-    text-align:center;
-    max-width:900px;
-    margin:auto;
-}
-
+/* GALLERY */
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
 }
 
 .gallery img{
     width:100%;
-    height:250px;
-    object-fit:cover;
     border-radius:10px;
-    border:2px solid #ff0000;
-    transition:.3s;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:0.3s;
 }
 
 .gallery img:hover{
     transform:scale(1.03);
+    border:2px solid #ff0000;
 }
 
-.video-container{
+/* VIDEO */
+.video{
     display:flex;
     justify-content:center;
 }
 
 iframe{
-    width:100%;
+    width:90%;
     max-width:900px;
-    height:500px;
-    border:none;
+    height:450px;
     border-radius:10px;
 }
 
+/* SOCIAL */
 .socials{
     text-align:center;
 }
@@ -158,135 +162,128 @@ iframe{
 .socials a{
     display:inline-block;
     margin:10px;
-    padding:12px 25px;
-    text-decoration:none;
-    color:white;
+    padding:12px 20px;
     background:#ff0000;
+    color:white;
+    text-decoration:none;
     border-radius:5px;
-    transition:.3s;
 }
 
-.socials a:hover{
-    background:#cc0000;
+/* LIGHTBOX */
+#lightbox{
+    position:fixed;
+    display:none;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
 }
 
+#lightbox img{
+    max-width:90%;
+    max-height:80%;
+    border:3px solid #ff0000;
+}
+
+/* FOOTER */
 footer{
     text-align:center;
-    padding:25px;
-    border-top:2px solid #ff0000;
-    background:#080808;
+    padding:20px;
+    border-top:1px solid #ff0000;
+    opacity:0.7;
 }
 
+/* MOBILE */
 @media(max-width:768px){
-
-.hero-content h1{
-    font-size:2.5rem;
-}
-
-iframe{
-    height:250px;
-}
-
-nav{
-    flex-direction:column;
-}
-
-nav ul{
-    margin-top:15px;
-}
+    .hero h1{font-size:2.5rem;}
+    iframe{height:250px;}
+    nav{flex-direction:column;}
+    nav ul{margin-top:10px;}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-    <nav>
-        <div class="logo">DROF Gamingz</div>
-
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#youtube">YouTube</a></li>
-            <li><a href="#socials">Socials</a></li>
-        </ul>
-    </nav>
+<nav>
+<div class="logo">DROF Gamingz</div>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#youtube">YouTube</a></li>
+<li><a href="#socials">Socials</a></li>
+</ul>
+</nav>
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>DROF Gamingz</h1>
-        <p>
-            Welcome to DROF Gamingz. Gaming content, livestreams,
-            epic highlights, walkthroughs, and nonstop action.
-            Join the community and level up with us.
-        </p>
-
-        <a href="#youtube" class="btn">Watch Videos</a>
-    </div>
+<div>
+<h1>DROF Gamingz</h1>
+<p>Gaming. Streaming. Highlights. Join the squad and level up your experience.</p>
+<a class="btn" href="#youtube">Watch Now</a>
+</div>
 </section>
 
 <section id="about">
-    <h2 class="section-title">About DROF Gamingz</h2>
-
-    <div class="about">
-        <p>
-            DROF Gamingz is dedicated to entertaining gamers through
-            gameplay videos, livestreams, challenges, tutorials,
-            and exciting gaming moments. Follow the journey and
-            become part of the community.
-        </p>
-    </div>
+<h2 class="title">About Us</h2>
+<p style="text-align:center;max-width:700px;margin:auto;opacity:0.8;">
+DROF Gamingz creates epic gaming content, livestreams, and highlights across popular games. Join our community and be part of the action.
+</p>
 </section>
 
 <section id="gallery">
-    <h2 class="section-title">Gaming Gallery</h2>
+<h2 class="title">Gallery</h2>
 
-    <div class="gallery">
-        <img src="https://picsum.photos/600/400?1" alt="">
-        <img src="https://picsum.photos/600/400?2" alt="">
-        <img src="https://picsum.photos/600/400?3" alt="">
-        <img src="https://picsum.photos/600/400?4" alt="">
-        <img src="https://picsum.photos/600/400?5" alt="">
-        <img src="https://picsum.photos/600/400?6" alt="">
-    </div>
+<div class="gallery">
+<img src="https://picsum.photos/500/300?1" onclick="openImg(this.src)">
+<img src="https://picsum.photos/500/300?2" onclick="openImg(this.src)">
+<img src="https://picsum.photos/500/300?3" onclick="openImg(this.src)">
+<img src="https://picsum.photos/500/300?4" onclick="openImg(this.src)">
+</div>
 </section>
 
 <section id="youtube">
-    <h2 class="section-title">Latest YouTube Video</h2>
+<h2 class="title">YouTube</h2>
 
-    <div class="video-container">
-        <iframe
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        allowfullscreen>
-        </iframe>
-    </div>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+</div>
 </section>
 
 <section id="socials">
-    <h2 class="section-title">Follow DROF Gamingz</h2>
+<h2 class="title">Follow Us</h2>
 
-    <div class="socials">
-        <a href="https://www.facebook.com/drofgamingz" target="_blank">
-            Facebook
-        </a>
-
-        <a href="#" target="_blank">
-            YouTube
-        </a>
-
-        <a href="#" target="_blank">
-            TikTok
-        </a>
-
-        <a href="#" target="_blank">
-            Discord
-        </a>
-    </div>
+<div class="socials">
+<a href="https://www.facebook.com/drofgamingz" target="_blank">Facebook</a>
+<a href="#">YouTube</a>
+<a href="#">Discord</a>
+<a href="#">TikTok</a>
+</div>
 </section>
 
 <footer>
-    <p>© 2026 DROF Gamingz. All Rights Reserved.</p>
+© 2026 DROF Gamingz
 </footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeImg()">
+<img id="lightboxImg">
+</div>
+
+<script>
+function openImg(src){
+    document.getElementById("lightbox").style.display="flex";
+    document.getElementById("lightboxImg").src=src;
+}
+
+function closeImg(){
+    document.getElementById("lightbox").style.display="none";
+}
+</script>
 
 </body>
 </html>
